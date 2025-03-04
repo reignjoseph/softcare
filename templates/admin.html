@@ -20,11 +20,24 @@
 </head>
 <body>
 
-    <h1 id="message">Hello Local User</h1>
+    <h1 id="message">Hello Admin</h1>
 
     <script>
-        // Optional: Modify this message dynamically if needed
-        document.getElementById("message").textContent = "Hello, Admin!";
+        // Fetch session data from the server
+        fetch("/session-data")
+        .then(response => response.json())
+        .then(data => {
+            if (data.logged_in) {
+                document.getElementById("message").textContent = `Hello, ${data.usertype}!`;
+            } else {
+                // Redirect to login if session key is missing
+                window.location.href = "/";
+            }
+        })
+        .catch(error => {
+            console.error("Error checking session:", error);
+            window.location.href = "/"; // Redirect in case of fetch failure
+        });
     </script>
 
 </body>
