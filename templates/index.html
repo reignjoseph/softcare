@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/static/js/script.js" defer=""></script>
-    <title>Home</title>
+    <title>Login</title>
     <link rel="icon" href="static/images/softcare.ico" type="image/x-icon">
 </head>
 
@@ -23,14 +24,17 @@
                     <a href="/" class="logo-box" style="width: auto;">
                         <img src="/static/images/softcare.png" style="width: 9rem;" alt="Logo">
                     </a><div style="grid-column: 2;place-self: center;padding: 10px;"><h1 style="font-weight: bold;margin: 0;">SOFTCARE HOSPITAL</h1><p style="font-size: 1.5rem;margin: 0;">Medical Help In Low Cost</p></div>
-                    <form class="login_container" style="grid-column: span 2;background: #00000087;border-radius: 4px;padding: 5px;display: grid;">
+                    <form class="login_container" style="grid-column: span 2; background: #00000087; border-radius: 4px; padding: 5px; display: grid;">
                         <h1 style="color: white;width: 12rem;text-align: center;">Username:</h1>
-                        <input type="text" aria-placeholder="enter Username" style="width: 25rem;margin: 10px;border-radius: 20px;height: 3.5rem;place-self: center;padding-left: 10px;font-size: 1.5rem;align-self: center;border: 1px solid;">
+                        <input id="username" type="text" aria-placeholder="Enter Username" style="width: 25rem; margin: 10px; border-radius: 20px; height: 3.5rem; place-self: center; padding-left: 10px; font-size: 1.5rem; align-self: center; border: 1px solid;">
+                        
                         <h1 style="color: white;width: 12rem;text-align: center;">Password:</h1>
-                        <div style="place-self: center; display: flex; flex-direction: row-reverse; width: fit-content;"> <input type="password" id="password" aria-placeholder="Enter Password" style="width: 25rem; margin: 10px; border-radius: 20px; height: 3.5rem; place-self: center; padding-left: 10px; font-size: 1.5rem; align-self: center; border: 1px solid;"> <img class="hide" id="hideIcon" src="/static/images/hide.png" alt="Hide" onclick="togglePassword()" style="cursor: pointer;"> <img class="show" id="showIcon" src="/static/images/show.png" alt="Show" onclick="togglePassword()" style="display: none; cursor: pointer;"> </div>
-                        
-                        
-                        <button type="submit" class="btn btn-primary" id="loginBtn"> Login </button>
+                        <div style="place-self: center; display: flex; flex-direction: row-reverse; width: fit-content;">
+                            <input id="password" type="password" aria-placeholder="Enter Password" style="width: 25rem; margin: 10px; border-radius: 20px; height: 3.5rem; place-self: center; padding-left: 10px; font-size: 1.5rem; align-self: center; border: 1px solid;">
+                        </div>
+                    
+                        <!-- Login Button (Div) -->
+                        <div class="btn btn-primary" id="loginBtn" style="cursor: pointer; text-align: center; padding: 10px; background-color: blue; color: white; border-radius: 5px;">Login</div>
                     </form>
             </div>
         </div>

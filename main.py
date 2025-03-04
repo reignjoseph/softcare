@@ -9,7 +9,13 @@ import logging
 from logging import FileHandler
 
 app = Flask(__name__)
+app.secret_key = "your_secret_key"
+
 from login import*
+
+@app.route('/')
+def index():
+    return render_template('/index.html')
 
 
 if __name__ == '__main__':
