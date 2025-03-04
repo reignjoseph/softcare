@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="/static/css/style.css"> -->
+    <link rel="stylesheet" href="/static/css/style.css">
     <!-- Bootstrap and custom JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -17,14 +17,19 @@
 
 <body>
     <img src="/static/images/background.jpg" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;z-index: -1;" alt="Hospital">
-    <header style="padding: 10px;">
-        <div class="container" style="max-width: -webkit-fill-available;">
-            <div class="justify-content-between align-items-center py-2" style="display: grid;width: -webkit-fill-available;height: fit-content;background: #ffffffde;border: 0.1px solid;border-radius: 5px;padding: 1rem;">
-                    <a href="/" class="logo-box" style="width: fit-content;height: fit-content;">
-                        <img src="/static/images/softcare.png" style="max-width: 8rem;" alt="Logo">
-                    </a>
-                    <div class="boxes-container" id="boxes-container" style="font-weight: bolder;font-size: 1.5rem;flex-direction: row;display: flex;height: -webkit-fill-available;grid-column: 2;gap: 20px;line-height: 3;"><a href="/" class="box">Home</a><a href="/announcement" class="box">Announcement</a><a href="/about#" class="box">About Us</a><a href="/signin" class="box">Sign In</a>
-                    </div>
+    <header style="padding: 90px;">
+        <div class="container" style="background: #fbfbffd6;width: fit-content;border-radius: 5px;place-items: center;">
+            <div class="" style="display: grid;width: fit-content;padding: 15px;row-gap: 10px;">
+                    <a href="/" class="logo-box" style="width: auto;">
+                        <img src="/static/images/softcare.png" style="width: 9rem;" alt="Logo">
+                    </a><div style="grid-column: 2;place-self: center;padding: 10px;"><h1 style="font-weight: bold;margin: 0;">SOFTCARE HOSPITAL</h1><p style="font-size: 1.5rem;margin: 0;">Medical Help In Low Cost</p></div>
+                    <form class="login_container" style="grid-column: span 2;background: #00000087;border-radius: 4px;padding: 5px;display: grid;">
+                        <h1 style="color: white;width: 12rem;text-align: center;">Username:</h1>
+                        <input type="text" aria-placeholder="enter Username" style="width: 25rem;margin: 10px;border-radius: 20px;height: 3.5rem;place-self: center;padding-left: 10px;font-size: 1.5rem;align-self: center;border: 1px solid;">
+                        <h1 style="color: white;width: 12rem;text-align: center;">Password:</h1>
+                        <input type="text" aria-placeholder="enter Password" style="width: 25rem;margin: 10px;border-radius: 20px;height: 3.5rem;place-self: center;padding-left: 10px;font-size: 1.5rem;align-self: center;border: 1px solid;">
+                        <button type="submit" class="btn btn-primary" id="loginBtn"> Login </button>
+                    </form>
             </div>
         </div>
     </header>
@@ -34,5 +39,14 @@
     
     
     
+    <footer class="footer">    
+        <!-- Copyright -->
+        
+            <p style="position: relative;margin: 0px;">© 2025 Hospital Name. All Rights Reserved.</p>
+        
+    </footer>
+    
 
+
+    
 </body></html>
