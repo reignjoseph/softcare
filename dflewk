@@ -1,6 +1,0 @@
-oh-my-zsh.hide-dirty=1
-credential.helper=store --file /cloudide/meta/user/.my_github_credentials
-user.name=reignjosephdelossantos
-user.email=reignjosephc.delossantos@gmail.com
-core.fsync=all
-pull.rebase=true
