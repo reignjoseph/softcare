@@ -1,44 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello Local User</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
 </head>
-<body>
+<body id="message">
 
-    <!-- <h1 id="message">Hello Local User</h1> -->
 
     <script>
         // Fetch session data from the server
         fetch("/session-data")
         .then(response => response.json())
         .then(data => {
+            const messageElement = document.getElementById("message");
             if (data.logged_in) {
-                document.getElementById("message").textContent = `Hello, ${data.usertype}!`;
+                
             } else {
-                // Redirect to login if session key is missing
+                
                 window.location.href = "/";
             }
         })
         .catch(error => {
             console.error("Error checking session:", error);
-            window.location.href = "/"; // Redirect in case of fetch failure
+            window.location.href = "/"; 
         });
     </script>
 
-</body>
-</html>
+    <div class="lu_container">
+        <div id="navigation">
+            <div style="display: flex;gap: 10px;"> <img class="lu_user" src="/static/images/user.png" width="80" height="auto" alt="User"> <h4>{{data.username}}</h4> </div>
+            <button class="lu_navigation" id="lu_home">Home</button>
+            <button class="lu_navigation" id="lu_patientrecords">Patient Records</button>
+            <button class="lu_navigation" id="lu_doctorappointments">Doctor Appointments</button>
+            <button class="lu_navigation" id="lu_billings">Billings</button>
+            <button class="lu_navigation" id="lu_logout">Logout</button>    
+        </div>
+            
+
+        </div>
+        <div id="output"></div>
+        <img class="b1" src="/static/images/b1.png" alt="b1">
+    
+
+        <style>
+    
+            #lu_home{}
+            #lu_patientrecords{}
+            #lu_doctorappointments{}
+            #lu_billings{}
+            #lu_logout{
+            place-self: end;
+        }
+            .lu_navigation{
+            background: #0c4b7a;
+            color: white;
+            padding: 10px;
+            font-size: 17px;
+            width: -webkit-fill-available;
+            height: fit-content;
+            }    #navigation{
+            display: grid;
+            flex-direction: column;
+            row-gap: 40px;
+            height: -webkit-fill-available;
+            margin: 0;
+            padding: 0;
+            grid-template-rows: repeat(4, min-content);
+        }
+            .lu_container {
+                background: #35485d;
+                padding: 20px;
+                border: 1px solid;
+                height: -webkit-fill-available;
+            }
+            .b1{
+                width: 10rem;
+            }
+            body {
+                    font-family: Arial, sans-serif;
+                    
+                    /* Stack items vertically */
+                   margin: 0;
+                   display: flex;
+                   flex-direction: row;
+                   align-items: flex-start;
+                   justify-content: flex-start;
+               }
+               h1 {
+                   color: #333;
+               }
+        </style>
+</body></html>
