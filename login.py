@@ -1,7 +1,7 @@
 import re
 from flask import Flask, request, redirect, url_for, render_template, flash, session, jsonify, send_from_directory
 import sqlite3
-from flask import g 
+from flask import g
 import os
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
@@ -12,7 +12,6 @@ import logging
 from logging import FileHandler
 from main import app
 import time
-import logging
 
 DATABASE = "/cloudide/workspace/SoftCare/data.db"
 
@@ -38,6 +37,7 @@ def close_db_connection(exception):
         print("🔸 Closing database connection.")
         db.close()
 
+
 @app.route("/login", methods=["POST"])
 def login():
     try:
@@ -57,22 +57,23 @@ def login():
         print(f"🔍 Checking database for user: {username}")
 
         conn = get_db_connection()
-        user = conn.execute(
+        cursor = conn.cursor()  # ✅ FIX: Defined cursor before using it
+
+        user = cursor.execute(
             "SELECT userid, usertype FROM users WHERE username = ? AND password = ?", (username, password)
         ).fetchone()
-        conn.close()
 
         if user:
-            user_id = user["userid"]  # Corrected column name
+            user_id = user["userid"]
             usertype = user["usertype"]
 
             print(f"✅ Login successful! UserType: {usertype}, UserID: {user_id}")
-             # Update the user's status to "Online"
+
+            # Update the user's status to "Online"
             cursor.execute("UPDATE users SET status = ? WHERE userid = ?", ("Online", user_id))
             conn.commit()
-            conn.close()
 
-            # Store user info in session (cookie storage)
+            # Store user info in session
             session["user_id"] = user_id
             session["usertype"] = usertype
             session["username"] = username
@@ -92,6 +93,8 @@ def login():
         print(f"⚠️ Unexpected error in /login: {e}")
         return jsonify({"success": False, "message": "Internal Server Error"}), 500
 
+    finally:
+        conn.close()  # ✅ FIX: Ensure connection is always closed
 
 @app.route("/logout", methods=["POST"])
 def logout():
@@ -102,12 +105,11 @@ def logout():
         if user_id:
             conn = get_db_connection()
             cursor = conn.cursor()
-            
+
             # Update the user's status to "Offline"
             cursor.execute("UPDATE users SET status = ? WHERE userid = ?", ("Offline", user_id))
             conn.commit()
-            conn.close()
-            
+
             print(f"🔴 User {user_id} set to Offline.")
 
         session.clear()  # Remove all stored session data
@@ -123,6 +125,8 @@ def logout():
         print(f"⚠️ Unexpected error in /logout: {e}")
         return jsonify({"success": False, "message": "Internal Server Error"}), 500
 
+    finally:
+        conn.close()  # ✅ FIX: Ensure connection is always closed
 
 @app.route("/session-data", methods=["GET"])
 def get_session_data():
