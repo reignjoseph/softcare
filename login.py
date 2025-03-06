@@ -96,6 +96,7 @@ def login():
     finally:
         conn.close()  # ✅ FIX: Ensure connection is always closed
 
+
 @app.route("/logout", methods=["POST"])
 def logout():
     """Logs the user out by updating status to 'Offline' and clearing the session."""
@@ -109,13 +110,14 @@ def logout():
             # Update the user's status to "Offline"
             cursor.execute("UPDATE users SET status = ? WHERE userid = ?", ("Offline", user_id))
             conn.commit()
+            conn.close()
 
             print(f"🔴 User {user_id} set to Offline.")
 
         session.clear()  # Remove all stored session data
         print("✅ User logged out successfully.")
 
-        return jsonify({"success": True, "message": "Logout successful"})
+        return jsonify({"success": True, "message": "Logout successful", "redirect_url": url_for('logout_redirect')})
 
     except sqlite3.Error as sql_error:
         print(f"⚠️ Database error: {sql_error}")
@@ -124,9 +126,12 @@ def logout():
     except Exception as e:
         print(f"⚠️ Unexpected error in /logout: {e}")
         return jsonify({"success": False, "message": "Internal Server Error"}), 500
+@app.route("/logout_redirect")
+def logout_redirect():
+    """Redirects the user to the login page after logout."""
+    return redirect(url_for("index"))  # Assuming your login page is handled by 'login' route
 
-    finally:
-        conn.close()  # ✅ FIX: Ensure connection is always closed
+
 
 @app.route("/session-data", methods=["GET"])
 def get_session_data():

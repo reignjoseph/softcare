@@ -77,4 +77,41 @@ def get_local_user_data():
     else:
         return redirect(url_for("login"))  # Redirect if user not found
 
+@app.route("/records")
+def records():
+    """Fetches all patient records and returns them as JSON."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
 
+    # Retrieve all patient records
+    cursor.execute("SELECT * FROM patient_records")
+    records = cursor.fetchall()
+    
+    conn.close()
+
+    # Debugging: Print records to check if data is retrieved
+    print("📌 Retrieved Records:", records)
+
+    if not records:
+        print("⚠️ No records found in the database.")
+
+    # Convert records to a list of dictionaries
+    patients = [
+        {
+            "id": row["patientid"],
+            "firstname": row["patientfirstname"],
+            "lastname": row["patientlastname"],
+            "age": row["patientage"],
+            "sex": row["patientsex"],
+            "room": row["room"],
+            "admission": row["dateaddmision"],
+            "discharge": row["datedischarge"],
+            "assist": row["assist"]
+        }
+        for row in records
+    ]
+
+    # Debugging: Print the formatted patient data
+    print("✅ Processed Patient Data:", patients)
+
+    return jsonify(patients)
