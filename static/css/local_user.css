@@ -1,0 +1,225 @@
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 295px;
+    text-align: center;
+}
+
+.close { cursor: pointer; float: right; font-size: 20px; }    
+
+table {
+width: 100%; border-collapse: collapse; font-size: 15px; text-align: left;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #d4e6f1;
+    cursor: pointer;
+}
+            .lu_frame_patrec{display: block;width: auto;height: -webkit-fill-available;background: #ececec;margin: 10px;border: 1px solid;border-radius: 5px;}
+            .lu_frame_docapp{width:4rem;height:4rem;background: #ececec;;display: none;}
+            .lu_frame_bill{width:4rem;height:4rem;background: #ececec;;display: none;}
+            .logo_title{width: 19rem;place-self: flex-end;}
+            .output{background: white;width: 80vw;height: -webkit-fill-available;display: flex;grid-template-rows: min-content;flex-direction: column;}
+            #output{}
+            #lu_home{}
+            #lu_patientrecords{}
+            #lu_doctorappointments{}
+            #lu_billings{}
+            #lu_logout{
+            align-self: end;
+        }
+            .lu_navigation{
+            background: #0c4b7a;
+            color: white;
+            padding: 10px;
+            font-size: 17px;
+            width: 15vw;
+            height: fit-content;
+            margin: -10px;
+            }    #navigation{
+            display: grid;
+            flex-direction: column;
+            row-gap: 40px;
+            height: -webkit-fill-available;
+            margin: 0;
+            padding: 0;
+            grid-template-rows: repeat(4, min-content);
+            width: fit-content;
+        }
+            .lu_container {
+                background: #35485d;
+                padding: 20px;
+                border: 1px solid;
+                height: -webkit-fill-available;
+                width: fit-content;
+                margin: 0;
+            }
+            .b1{
+                position: absolute;
+    width: -webkit-fill-available;
+    z-index: -1;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                overflow: hidden;
+    margin: 0;
+    display: flex
+;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+               }
+               
+               #add {
+                background: black;
+                color: white;
+                border-radius: 10px;
+                width: 45px;
+                height: 45px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+            
+            #add:hover { background: #333; }
+            
+
+#form_patientinfo   {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+#form_patientinfo label {
+    display: flex;
+}
+#form_patientinfo label span{
+    width: -webkit-fill-available;
+}
+
+table {
+width: 100%; border-collapse: collapse; font-size: 15px; text-align: left;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #d4e6f1;
+    cursor: pointer;
+}
+            .lu_frame_patrec{display: block;width: auto;height: -webkit-fill-available;background: #ececec;margin: 10px;border: 1px solid;border-radius: 5px;}
+            .lu_frame_docapp{width:4rem;height:4rem;background: #ececec;;display: none;}
+            .lu_frame_bill{width:4rem;height:4rem;background: #ececec;;display: none;}
+            .logo_title{width: 19rem;place-self: flex-end;}
+            .output{background: white;width: 80vw;height: -webkit-fill-available;display: flex;grid-template-rows: min-content;flex-direction: column;}
+            #output{}
+            #lu_home{}
+            #lu_patientrecords{}
+            #lu_doctorappointments{}
+            #lu_billings{}
+            #lu_logout{
+            align-self: end;
+        }
+            .lu_navigation{
+            background: #0c4b7a;
+            color: white;
+            padding: 10px;
+            font-size: 17px;
+            width: 15vw;
+            height: fit-content;
+            margin: -10px;
+            }    #navigation{
+            display: grid;
+            flex-direction: column;
+            row-gap: 40px;
+            height: -webkit-fill-available;
+            margin: 0;
+            padding: 0;
+            grid-template-rows: repeat(4, min-content);
+            width: fit-content;
+        }
+            .lu_container {
+                background: #35485d;
+                padding: 20px;
+                border: 1px solid;
+                height: -webkit-fill-available;
+                width: fit-content;
+                margin: 0;
+            }
+            .b1{
+                position: absolute;
+    width: -webkit-fill-available;
+    z-index: -1;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                overflow: hidden;
+    margin: 0;
+    display: flex
+;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+               }
+               
+               #add {
+                background: black;
+                color: white;
+                border-radius: 10px;
+                width: 45px;
+                height: 45px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+            
+            #add:hover { background: #333; }
+        

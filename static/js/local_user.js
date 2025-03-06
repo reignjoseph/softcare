@@ -126,4 +126,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     fetchRecords();
+
+
+    document.getElementById("p_save").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent form from reloading the page
+    
+        let patientData = {
+            firstname: document.getElementById("p_firstname").value,
+            lastname: document.getElementById("p_lastname").value,
+            age: document.getElementById("p_age").value,
+            sex: document.getElementById("p_sex").value,
+            room: document.getElementById("p_room").value,
+            admission_date: document.getElementById("p_admissiondate").value,
+            discharge_date: document.getElementById("dischargedate").value
+        };
+    
+        fetch("/InsertPatientInfo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(patientData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message); // Show success or error message
+            if (data.status === "success") {
+                document.getElementById("form_patientinfo").reset(); // Clear form fields
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });        
+       
 });
+
+
+
+
+
+       

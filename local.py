@@ -79,9 +79,15 @@ def get_local_user_data():
 
 @app.route("/records")
 def records():
-    """Fetches all patient records and returns them as JSON."""
+    """Fetches all patient records and returns them as JSON, using session username for assist."""
     conn = get_db_connection()
     cursor = conn.cursor()
+
+    # Get the logged-in user's ID and username from session
+    user_id = session.get("user_id")
+    username = session.get("username")  # Assuming 'username' is stored in session
+
+    print(f"🟢 Current session user_id: {user_id}, username: {username}")
 
     # Retrieve all patient records
     cursor.execute("SELECT * FROM patient_records")
@@ -89,7 +95,6 @@ def records():
     
     conn.close()
 
-    # Debugging: Print records to check if data is retrieved
     print("📌 Retrieved Records:", records)
 
     if not records:
@@ -106,12 +111,47 @@ def records():
             "room": row["room"],
             "admission": row["dateaddmision"],
             "discharge": row["datedischarge"],
-            "assist": row["assist"]
+            "assist": username  # Directly use session username
         }
         for row in records
     ]
 
-    # Debugging: Print the formatted patient data
     print("✅ Processed Patient Data:", patients)
 
     return jsonify(patients)
+    
+
+
+@app.route("/InsertPatientInfo", methods=["POST"])
+def InsertPatientInfo():
+    """Inserts new patient information into the database."""
+    try:
+        # Extract data from form
+        data = request.json
+        firstname = data.get("firstname")
+        lastname = data.get("lastname")
+        age = data.get("age")
+        sex = data.get("sex")
+        room = data.get("room")
+        admission_date = data.get("admission_date")
+        discharge_date = data.get("discharge_date")
+
+        # Ensure required fields are provided
+        if not (firstname and lastname and age and sex and room and admission_date):
+            return jsonify({"status": "error", "message": "Missing required fields"}), 400
+
+        # Insert data into the database
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO patient_records (patientfirstname, patientlastname, patientage, patientsex, room, dateaddmision, datedischarge)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (firstname, lastname, age, sex, room, admission_date, discharge_date))
+        
+        conn.commit()
+        conn.close()
+
+        return jsonify({"status": "success", "message": "Patient record added successfully!"}), 201
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500    

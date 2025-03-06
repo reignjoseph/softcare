@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoftCare</title>
     <script src="{{ url_for('static', filename='js/local_user.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/local_user.css') }}">
 
 </head>
 <body id="message">
@@ -29,8 +30,8 @@
                     <span style="grid-column: 2;display: flex;align-items: flex-end;justify-content: flex-end;margin: 0;padding: 0;">
                         <button id="add" style="align-self: end;justify-self: self-end;background: black;border-radius: 10px;margin-right: 80px;width: 45px;height: auto;display: flex;justify-content: center;margin-right: 10px;" alt="add">
                             <img style="width: 40px; height: fit-content;" class="add" src="/static/images/add.png"></button>
-                            <button id="edit" style="align-self: end;justify-self: self-end;border-radius: 10px;margin-right: 10px;width: 45px;height: auto;display: flex;justify-content: center;" alt="edit">
-                                <img style="width: 40px; height: fit-content;" class="edit" src="/static/images/edit.png"></button>
+                            <!-- <button id="edit" style="align-self: end;justify-self: self-end;border-radius: 10px;margin-right: 10px;width: 45px;height: auto;display: flex;justify-content: center;" alt="edit">
+                                <img style="width: 40px; height: fit-content;" class="edit" src="/static/images/edit.png"></button> -->
                         
                     </span>
                         
@@ -211,4 +212,41 @@ tr:hover {
             window.location.href = "/"; 
         });
         </script>
+    
+    
+    
+    
+        
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Add Patient</h1>
+            <form id="form_patientinfo">
+            <label><span>Firstname:</span> <input id="p_firstname" type="text"></label><br>
+            <label><span>Lastname:</span> <input  id="p_lastname" type="text"></label><br>
+            <label><span>Age:</span> <input id="p_age" type="number"></label><br>
+            <label><span>Sex:</span> <input id="p_sex"type="text"></label><br>
+            <label><span>Room:</span> <input id="p_room"type="text"></label><br>
+            <label><span>Admission Date:</span> <input id="p_admissiondate" type="datetime-local"></label><br>
+            <label><span>Discharge Date:</span> <input id="dischargedate" type="datetime-local"></label><br>
+            <!-- <label><span>Assist:</span> <input type="text" readonly></label> -->
+            <button id="p_save" style="margin: 15px;width: min-content;align-self: center;">SAVE</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        var addbutton = document.getElementById("add");
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        addbutton.onclick = function() {
+            modal.style.display = "flex";
+        }
+        span.onclick = function() { modal.style.display = "none"; }
+        window.onclick = function(event) {
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+    </script>        
 </body></html>
